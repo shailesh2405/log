@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<configuration>
+    <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>ec2-54-241-128-0.us-west-1.compute.amazonaws.com:5000</destination>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <mdc />
+                <context />
+                <logLevel />
+                <loggerName />
+                <pattern>
+                    <pattern>
+                        {
+                        "service": "settings-service"
+                        }
+                    </pattern>
+                </pattern>
+                <threadName />
+                <message />
+                <logstashMarkers />
+                <stackTrace />
+            </providers>
+        </encoder>
+    </appender> 
+    <logger name="org.springframework.*" level="DEBUG">
+        <appender-ref ref="STASH"/>
+    </logger>
+    <logger name="org.hibernate.*" level="DEBUG">
+        <appender-ref ref="STASH"/>
+    </logger>
+     <logger name="com.recvue" level="DEBUG">
+        <appender-ref ref="STASH"/>
+    </logger>
+    <root name="com.recvue" level="DEBUG">
+        <appender-ref ref="STASH"/>
+    </root>   
+</configuration>
