@@ -2,3 +2,5 @@ log_level=INFO
 log_level=ERROR
 Local
 sout Error
+
+Local error line
